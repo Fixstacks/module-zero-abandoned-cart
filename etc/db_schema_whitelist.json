@@ -1,0 +1,15 @@
+{
+    "zero_abandoned_cart_reminder": {
+        "column": {
+            "quote_id": true,
+            "token": true,
+            "sent_at": true,
+            "restored_at": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "ZERO_ABANDONED_CART_REMINDER_TOKEN": true,
+            "ZERO_ABANDONED_CART_REMINDER_QUOTE_ID_QUOTE_ENTITY_ID": true
+        }
+    }
+}

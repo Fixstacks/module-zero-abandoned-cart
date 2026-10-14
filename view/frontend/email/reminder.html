@@ -1,0 +1,51 @@
+<!--
+/**
+ * Copyright © 2026 Roman Pasichnyk
+ * SPDX-License-Identifier: OSL-3.0 OR AFL-3.0
+ */
+-->
+<!--@subject {{trans "Your cart at %store_name is waiting" store_name=$store.frontend_name}} @-->
+<!--@vars {
+"var customer_name":"Customer First Name",
+"var restore_url":"Link Back to the Cart",
+"var store.frontend_name":"Store Frontend Name",
+"layout handle=\"zero_abandoned_cart_email_items\" quote_id=$quote_id":"Cart Items Grid"
+} @-->
+
+{{template config_path="design/email/header_template"}}
+
+<table>
+    <tr class="email-intro">
+        <td>
+            {{if customer_name}}
+            <p class="greeting">{{trans "%name," name=$customer_name}}</p>
+            {{/if}}
+            <p>{{trans "You left these in your cart at %store_name. They're still there:" store_name=$store.frontend_name}}</p>
+        </td>
+    </tr>
+    <tr class="email-information">
+        <td>
+            {{layout handle="zero_abandoned_cart_email_items" quote_id=$quote_id area="frontend"}}
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <table class="button" width="100%" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                    <td>
+                        <table class="inner-wrapper" border="0" cellspacing="0" cellpadding="0" align="center">
+                            <tr>
+                                <td align="center">
+                                    <a href="{{var restore_url}}" target="_blank">{{trans "Back to the cart"}}</a>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+            <p>{{trans "Prices and stock may have changed since. If you've placed your order already, ignore this email: it's the only reminder."}}</p>
+        </td>
+    </tr>
+</table>
+
+{{template config_path="design/email/footer_template"}}

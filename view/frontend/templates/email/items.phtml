@@ -1,0 +1,28 @@
+<?php
+/**
+ * Copyright © 2026 Roman Pasichnyk
+ * SPDX-License-Identifier: OSL-3.0 OR AFL-3.0
+ *
+ * @var \Zero\AbandonedCart\Block\Email\Items $block
+ * @var \Magento\Framework\Escaper $escaper
+ */
+?>
+<table class="email-items">
+    <?php foreach ($block->getItems() as $item): ?>
+        <tr>
+            <td class="item-image" style="width: 80px; padding: 10px 10px 10px 0;">
+                <img src="<?= $escaper->escapeUrl($block->getImageUrl($item)) ?>" width="80" alt="" />
+            </td>
+            <td class="item-info" style="padding: 10px;">
+                <p class="product-name"><strong><?= $escaper->escapeHtml($item->getName()) ?></strong></p>
+                <?php foreach ($block->getOptions($item) as $option): ?>
+                    <p><?= $escaper->escapeHtml($option['label']) ?>: <?= $escaper->escapeHtml($option['value']) ?></p>
+                <?php endforeach; ?>
+                <p><?= $escaper->escapeHtml(__('Qty')) ?>: <?= (float) $item->getQty() ?></p>
+            </td>
+            <td class="item-price" style="padding: 10px 0 10px 10px; text-align: right; white-space: nowrap;">
+                <?= $escaper->escapeHtml($block->getRowTotal($item)) ?>
+            </td>
+        </tr>
+    <?php endforeach; ?>
+</table>

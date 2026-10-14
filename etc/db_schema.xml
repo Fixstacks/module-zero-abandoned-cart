@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!--
+    Copyright © 2026 Roman Pasichnyk
+    SPDX-License-Identifier: OSL-3.0 OR AFL-3.0
+-->
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="zero_abandoned_cart_reminder" resource="checkout" engine="innodb" comment="Zero Abandoned Cart Reminders">
+        <column xsi:type="int" name="quote_id" unsigned="true" nullable="false" comment="Cart"/>
+        <column xsi:type="varchar" name="token" nullable="false" length="64" comment="Restore Link Token"/>
+        <column xsi:type="timestamp" name="sent_at" nullable="false" default="CURRENT_TIMESTAMP" comment="Sent At"/>
+        <column xsi:type="timestamp" name="restored_at" nullable="true" comment="Cart Restored From The Link At"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="quote_id"/>
+        </constraint>
+        <constraint xsi:type="unique" referenceId="ZERO_ABANDONED_CART_REMINDER_TOKEN">
+            <column name="token"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="ZERO_ABANDONED_CART_REMINDER_QUOTE_ID_QUOTE_ENTITY_ID"
+                    table="zero_abandoned_cart_reminder" column="quote_id"
+                    referenceTable="quote" referenceColumn="entity_id" onDelete="CASCADE"/>
+    </table>
+</schema>
