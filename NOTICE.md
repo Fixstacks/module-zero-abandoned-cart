@@ -1,4 +1,4 @@
-# fixstacks/module-zero-abandoned-cart — licensing
+# zerofront/module-zero-abandoned-cart — licensing
 
 Copyright © 2026 Roman Pasichnyk.
 
